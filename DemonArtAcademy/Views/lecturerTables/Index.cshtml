@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DemonArtAcademy.Models.lecturerTable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lecture List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Full Name
+        </th>
+        <th>
+            lecturerAddress
+        </th>
+        <th>
+            lecturerGender
+        </th>
+        <th>
+            lecturerPhone
+        </th>
+        <th>
+            lecturerEmail
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecturerAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecturerGender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecturerPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lecturerEmail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.lecturerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.lecturerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.lecturerId })
+        </td>
+    </tr>
+}
+
+</table>

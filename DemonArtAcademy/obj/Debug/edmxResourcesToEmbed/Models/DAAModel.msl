@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DemonArtAcademyDBModelStoreContainer" CdmEntityContainer="DemonArtAcademyDBEntities">
+    <EntitySetMapping Name="courseTables">
+      <EntityTypeMapping TypeName="DemonArtAcademyDBModel.courseTable">
+        <MappingFragment StoreEntitySet="courseTable">
+          <ScalarProperty Name="courseId" ColumnName="courseId" />
+          <ScalarProperty Name="courseName" ColumnName="courseName" />
+          <ScalarProperty Name="credits" ColumnName="credits" />
+          <ScalarProperty Name="department" ColumnName="department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departmentTables">
+      <EntityTypeMapping TypeName="DemonArtAcademyDBModel.departmentTable">
+        <MappingFragment StoreEntitySet="departmentTable">
+          <ScalarProperty Name="depId" ColumnName="depId" />
+          <ScalarProperty Name="depName" ColumnName="depName" />
+          <ScalarProperty Name="faculty" ColumnName="faculty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facultyTables">
+      <EntityTypeMapping TypeName="DemonArtAcademyDBModel.facultyTable">
+        <MappingFragment StoreEntitySet="facultyTable">
+          <ScalarProperty Name="facultyId" ColumnName="facultyId" />
+          <ScalarProperty Name="facultyName" ColumnName="facultyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lecturerTables">
+      <EntityTypeMapping TypeName="DemonArtAcademyDBModel.lecturerTable">
+        <MappingFragment StoreEntitySet="lecturerTable">
+          <ScalarProperty Name="lecturerId" ColumnName="lecturerId" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="lecturerAddress" ColumnName="lecturerAddress" />
+          <ScalarProperty Name="lecturerGender" ColumnName="lecturerGender" />
+          <ScalarProperty Name="lecturerPhone" ColumnName="lecturerPhone" />
+          <ScalarProperty Name="lecturerEmail" ColumnName="lecturerEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DemonArtAcademyDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teachingLoads">
+      <EntityTypeMapping TypeName="DemonArtAcademyDBModel.teachingLoad">
+        <MappingFragment StoreEntitySet="teachingLoad">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="course" ColumnName="course" />
+          <ScalarProperty Name="lecturer" ColumnName="lecturer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DemonArtAcademyDBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DemonArtAcademyDBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DemonArtAcademyDBModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DemonArtAcademyDBModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemonArtAcademyDBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DemonArtAcademyDBModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemonArtAcademyDBModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DemonArtAcademyDBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DemonArtAcademyDBModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

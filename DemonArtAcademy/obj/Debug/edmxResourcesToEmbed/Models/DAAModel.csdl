@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemonArtAcademyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="courseTable">
+    <Key>
+      <PropertyRef Name="courseId" />
+    </Key>
+    <Property Name="courseId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="courseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="credits" Type="Int32" />
+    <Property Name="department" Type="Int32" />
+    <NavigationProperty Name="departmentTable" Relationship="Self.FK_courseTable_departmentTable" FromRole="courseTable" ToRole="departmentTable" />
+    <NavigationProperty Name="teachingLoads" Relationship="Self.FK_teachingLoad_courseTable" FromRole="courseTable" ToRole="teachingLoad" />
+  </EntityType>
+  <EntityType Name="departmentTable">
+    <Key>
+      <PropertyRef Name="depId" />
+    </Key>
+    <Property Name="depId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="depName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="faculty" Type="Int32" />
+    <NavigationProperty Name="courseTables" Relationship="Self.FK_courseTable_departmentTable" FromRole="departmentTable" ToRole="courseTable" />
+    <NavigationProperty Name="facultyTable" Relationship="Self.FK_departmentTable_facultyTable" FromRole="departmentTable" ToRole="facultyTable" />
+  </EntityType>
+  <EntityType Name="facultyTable">
+    <Key>
+      <PropertyRef Name="facultyId" />
+    </Key>
+    <Property Name="facultyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="facultyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="departmentTables" Relationship="Self.FK_departmentTable_facultyTable" FromRole="facultyTable" ToRole="departmentTable" />
+  </EntityType>
+  <EntityType Name="lecturerTable">
+    <Key>
+      <PropertyRef Name="lecturerId" />
+    </Key>
+    <Property Name="lecturerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lecturerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lecturerGender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lecturerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lecturerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="teachingLoads" Relationship="Self.FK_teachingLoad_lecturerTable" FromRole="lecturerTable" ToRole="teachingLoad" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="teachingLoad">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="course" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lecturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="courseTable" Relationship="Self.FK_teachingLoad_courseTable" FromRole="teachingLoad" ToRole="courseTable" />
+    <NavigationProperty Name="lecturerTable" Relationship="Self.FK_teachingLoad_lecturerTable" FromRole="teachingLoad" ToRole="lecturerTable" />
+  </EntityType>
+  <Association Name="FK_courseTable_departmentTable">
+    <End Role="departmentTable" Type="Self.departmentTable" Multiplicity="0..1" />
+    <End Role="courseTable" Type="Self.courseTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departmentTable">
+        <PropertyRef Name="depId" />
+      </Principal>
+      <Dependent Role="courseTable">
+        <PropertyRef Name="department" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teachingLoad_courseTable">
+    <End Role="courseTable" Type="Self.courseTable" Multiplicity="0..1" />
+    <End Role="teachingLoad" Type="Self.teachingLoad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="courseTable">
+        <PropertyRef Name="courseId" />
+      </Principal>
+      <Dependent Role="teachingLoad">
+        <PropertyRef Name="course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_departmentTable_facultyTable">
+    <End Role="facultyTable" Type="Self.facultyTable" Multiplicity="0..1" />
+    <End Role="departmentTable" Type="Self.departmentTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facultyTable">
+        <PropertyRef Name="facultyId" />
+      </Principal>
+      <Dependent Role="departmentTable">
+        <PropertyRef Name="faculty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_teachingLoad_lecturerTable">
+    <End Role="lecturerTable" Type="Self.lecturerTable" Multiplicity="0..1" />
+    <End Role="teachingLoad" Type="Self.teachingLoad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="lecturerTable">
+        <PropertyRef Name="lecturerId" />
+      </Principal>
+      <Dependent Role="teachingLoad">
+        <PropertyRef Name="lecturer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DemonArtAcademyDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="courseTables" EntityType="Self.courseTable" />
+    <EntitySet Name="departmentTables" EntityType="Self.departmentTable" />
+    <EntitySet Name="facultyTables" EntityType="Self.facultyTable" />
+    <EntitySet Name="lecturerTables" EntityType="Self.lecturerTable" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="teachingLoads" EntityType="Self.teachingLoad" />
+    <AssociationSet Name="FK_courseTable_departmentTable" Association="Self.FK_courseTable_departmentTable">
+      <End Role="departmentTable" EntitySet="departmentTables" />
+      <End Role="courseTable" EntitySet="courseTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teachingLoad_courseTable" Association="Self.FK_teachingLoad_courseTable">
+      <End Role="courseTable" EntitySet="courseTables" />
+      <End Role="teachingLoad" EntitySet="teachingLoads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_departmentTable_facultyTable" Association="Self.FK_departmentTable_facultyTable">
+      <End Role="facultyTable" EntitySet="facultyTables" />
+      <End Role="departmentTable" EntitySet="departmentTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_teachingLoad_lecturerTable" Association="Self.FK_teachingLoad_lecturerTable">
+      <End Role="lecturerTable" EntitySet="lecturerTables" />
+      <End Role="teachingLoad" EntitySet="teachingLoads" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DemonArtAcademyDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DemonArtAcademyDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

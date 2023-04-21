@@ -1,0 +1,26 @@
+﻿@model DemonArtAcademy.Models.facultyTable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>facultyTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.facultyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facultyName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.facultyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

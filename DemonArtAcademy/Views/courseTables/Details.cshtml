@@ -1,0 +1,42 @@
+﻿@model DemonArtAcademy.Models.courseTable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>courseTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.courseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.courseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.credits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.credits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.departmentTable.depName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departmentTable.depName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.courseId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

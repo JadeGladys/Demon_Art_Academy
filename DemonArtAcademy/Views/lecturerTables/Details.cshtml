@@ -1,0 +1,58 @@
+﻿@model DemonArtAcademy.Models.lecturerTable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>lecturerTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lecturerAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lecturerAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lecturerGender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lecturerGender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lecturerPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lecturerPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lecturerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lecturerEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.lecturerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
